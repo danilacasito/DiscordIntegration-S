@@ -12,6 +12,7 @@ import org.spongepowered.api.Game;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.config.ConfigManager;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.lifecycle.StartedEngineEvent;
 import org.spongepowered.api.event.lifecycle.StartingEngineEvent;
@@ -104,8 +105,12 @@ public class DiscordIntegration {
     @Listener
     public void onMessageSend(PlayerChatEvent event) {
         String message = PlainTextComponentSerializer.plainText().serialize(event.message());
-        event.get
+        String playerName = event.cause().first(Player.class).map(player -> player.profile().name().orElse("Unknown Player")).orElse("Unknown Player");
         TextChannel channel = this.jda.getTextChannelById(this.cid);
-        channel.sendMessage(message).queue();
+        channel.sendMessage(playerName + ": " + message).queue();
+    }
+
+    public JDA getJDA() {
+        return this.jda;
     }
 }

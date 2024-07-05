@@ -8,9 +8,9 @@
     {
       "id": "discord-integration",
       "name": "DiscordIntegrationSponge",
-      "version": "1.0-SNAPSHOT",
+      "version": "1.0",
       "entrypoint": "me.elordenador.sponge.DiscordIntegration.DiscordIntegration",
-      "description": "My plugin description",
+      "description": "Just bridges discord and MC's CHAT.",
       "branding": {},
       "links": {
       },

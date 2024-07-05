@@ -20,8 +20,12 @@ public class DiscordListener implements EventListener {
 
             this.logger.info("Bot is ready");
         } else if (genericEvent instanceof MessageReceivedEvent) {
+
             MessageReceivedEvent event = (MessageReceivedEvent) genericEvent;
             String author = event.getAuthor().getName();
+            if (event.getAuthor().getId().equals(discordIntegration.getJDA().getSelfUser().getId())) {
+                return;
+            }
             String message = event.getMessage().getContentStripped();
             if (event.getChannel().getId().equals(this.discordIntegration.getCID())) {
                 this.discordIntegration.enviarMensajeGlobal("[DC] " + author + ": " + message);
