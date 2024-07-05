@@ -1,0 +1,46 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+group = 'org.elordenador.sponge.discordintegration'
+version = '1.0-SNAPSHOT'
+
+
+repositories {
+    mavenCentral()
+    maven {
+        name = "sponge-repo"
+        url = 'https://repo.spongepowered.org/repository/maven-public/'
+    }
+}
+
+
+
+configurations {
+    // configuration that holds jars to include in the jar
+    extraLibs
+}
+
+dependencies {
+    implementation "org.spongepowered:spongeapi:8.2.0"
+    implementation "net.dv8tion:JDA:5.0.0-beta.24"
+}
+
+
+jar {
+    from {
+        configurations.extraLibs.collect { it.isDirectory() ? it : zipTree(it) }
+
+    }
+}
+
+shadowJar {
+    dependencies {
+        exclude(dependency('org.spongepowered:spongeapi:8.2.0'))
+    }
+}
+
+test {
+    useJUnitPlatform()
+}

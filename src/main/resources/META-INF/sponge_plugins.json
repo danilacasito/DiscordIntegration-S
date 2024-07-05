@@ -1,0 +1,35 @@
+{
+  "loader": {
+    "name": "java_plain",
+    "version": "1.0"
+  },
+  "license": "All-Rights-Reserved",
+  "plugins": [
+    {
+      "id": "discord-integration",
+      "name": "DiscordIntegrationSponge",
+      "version": "1.0-SNAPSHOT",
+      "entrypoint": "me.elordenador.sponge.DiscordIntegration.DiscordIntegration",
+      "description": "My plugin description",
+      "branding": {},
+      "links": {
+      },
+      "contributors": [
+      ],
+      "dependencies": [
+        {
+          "id": "spongeapi",
+          "version": "8.2.0",
+          "load-order": "after",
+          "optional": false
+        },
+        {
+          "id": "javadiscordapi",
+          "version": "1.0-SNAPSHOT",
+          "load-order": "after",
+          "optional": false
+        }
+      ]
+    }
+  ]
+}
